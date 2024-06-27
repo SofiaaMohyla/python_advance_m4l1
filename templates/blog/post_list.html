@@ -10,8 +10,14 @@
     <div class="post-list-container">
         {% for post in posts %}
             <div class="post-item">
-                <h2 class="post-title">{{ post.title }}</h2>
-                <p class="post-date">{{ post.published_date }}</p>
+                <h2 class="post-title">
+                    <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                </h2>
+                <p class="post-date">Published on: {{ post.published_date }}</p>
+                <p class="post-author">
+                    Author: <a href="{% url 'posts_by_author' post.author.id %}">{{ post.author.name }}</a>
+                </p>
+                <p class="post-recently">Recently Published: {{ post.published_recently|yesno:"Yes,No" }}</p>
             </div>
         {% endfor %}
     </div>
